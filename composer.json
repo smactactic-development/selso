@@ -1,0 +1,29 @@
+{
+    "name": "smactactic/selso",
+    "description": "Handler authorize for client",
+    "autoload": {
+        "psr-4": {
+            "Smactactic\\Selso\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Smactactic\\Selso\\SelsoServiceProvider"
+            ]
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Moch Fikri Khoirurrizal",
+            "email": "mfikri.khoirurrizal@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "firebase/php-jwt": "^6.11"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
