@@ -30,7 +30,41 @@ Publish the configuration file:
 php artisan vendor:publish --tag=selso-config
 ```
 
-Configure your environment variables in .env:
+Update the default guard in `config/auth.php`:
+
+```
+'defaults' => [
+    'guard' => env('AUTH_GUARD', 'selso'),
+    'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+],
+```
+
+Add a new guard under the `guards` section:
+
+```
+'guards' => [
+    // .....
+
+    'selso' => [
+        'driver' => 'session',
+        'provider' => 'selso',
+    ],
+]
+```
+
+Register a new user `provider` in the providers section:
+
+```
+'providers' => [
+    .....
+
+    'selso' => [
+        'driver' => 'selso',
+    ],
+],
+```
+
+Configure your environment variables in `.env`:
 
 ```
 SSO_CLIENT_ID=
