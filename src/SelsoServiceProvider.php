@@ -24,7 +24,7 @@ class SelsoServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/selso.php' => config_path('selso.php'),
-        ], 'config');
+        ], 'selso-config');
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
