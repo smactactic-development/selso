@@ -13,7 +13,7 @@ Route::group([
     });
 
     Route::middleware('selso.auth')->group(function () {
-        Route::get('/logout', [AuthController::class, 'destroy'])->name('selso.logout');
+        Route::post('/logout', [AuthController::class, 'destroy'])->name('selso.logout');
         Route::get('/settings/profile', [ProfileController::class, 'edit'])->name('profile');
     });
 });
