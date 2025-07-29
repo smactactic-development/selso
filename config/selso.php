@@ -58,10 +58,10 @@ return [
     | Redirect After Login
     |--------------------------------------------------------------------------
     |
-    | Define the named route to which the user will be redirected
+    | Define the path to which the user will be redirected
     | after a successful login through the SSO process.
     |
     */
 
-    'redirect_after_login' => 'dashboard',
+    'redirect_after_login' => '/dashboard',
 ];

@@ -55,7 +55,8 @@ class AuthController extends Controller
         Auth::login(new User($userInfo));
         session(['selso' => $userInfo]);
 
-        return redirect()->intended(route(config('selso.redirect_after_login'), absolute: false));
+        // return redirect()->intended(route(config('selso.redirect_after_login'), absolute: false));
+        return redirect()->intended(config('selso.redirect_after_login'));
     }
 
     public function destroy()
@@ -74,6 +75,6 @@ class AuthController extends Controller
             session()->flush();
         }
 
-        return redirect()->route('home');
+        return redirect()->to('/');
     }
 }
