@@ -1,8 +1,8 @@
 <?php
 
-namespace Smactactic\Selso\Http\Controllers;
+namespace Smactactic\Selso\Http\Controllers\Auth;
 
-use App\Guards\UserSSO;
+use Smactactic\Selso\Guards\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -52,8 +52,8 @@ class AuthController extends Controller
         $userInfo['access_token'] = $data['access_token'];
         $userInfo['refresh_token'] = $data['refresh_token'];
 
-        // Auth::login(new UserSSO($userInfo));
-        // session(['sso_user' => $userInfo]);
+        Auth::login(new User($userInfo));
+        session(['sso_user' => $userInfo]);
 
         return redirect()->intended(route(config('selso.redirect_after_login'), absolute: false));
     }

@@ -2,7 +2,9 @@
 
 namespace Smactactic\Selso;
 
+use Smactactic\Selso\Extensions\SelsoUserProvider;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class SelsoServiceProvider extends ServiceProvider
 {
@@ -24,5 +26,9 @@ class SelsoServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        Auth::provider('selso', function ($app, array $config) {
+            return new SelsoUserProvider();
+        });
     }
 }

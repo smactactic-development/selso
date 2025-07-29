@@ -1,6 +1,6 @@
 <?php
 
-namespace Smactactic\Selso\Http\Controllers;
+namespace Smactactic\Selso\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use Firebase\JWT\JWT;
