@@ -2,7 +2,6 @@
 
 namespace Smactactic\Selso\Http\Middleware;
 
-// use App\Guards\UserSSO;
 use Closure;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
@@ -27,16 +26,16 @@ class SelsoAuthenticate
         if (!$token) return abort(401);
 
         try {
-            JWT::decode($token, new Key(config('sso.public_key'), 'RS256'));
+            JWT::decode($token, new Key(config('selso.public_key'), 'RS256'));
             return $next($request);
         } catch (ExpiredException $e) {
-            $baseUrl = config('sso.auth_server_url');
+            $baseUrl = config('selso.auth_server_url');
 
             $response = Http::asForm()->post($baseUrl . '/oauth/token', [
                 'grant_type' => 'refresh_token',
                 'refresh_token' => Auth::user()?->refresh_token,
-                'client_id' => config('sso.client_id'),
-                'client_secret' => config('sso.client_secret'),
+                'client_id' => config('selso.client_id'),
+                'client_secret' => config('selso.client_secret'),
                 'scope' => '',
             ]);
 
