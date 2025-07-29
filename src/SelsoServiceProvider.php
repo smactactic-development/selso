@@ -5,6 +5,7 @@ namespace Smactactic\Selso;
 use Smactactic\Selso\Extensions\SelsoUserProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Smactactic\Selso\Http\Middleware\SelsoAuthenticate;
 
 class SelsoServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,7 @@ class SelsoServiceProvider extends ServiceProvider
         Auth::provider('selso', function ($app, array $config) {
             return new SelsoUserProvider();
         });
+
+        app('router')->aliasMiddleware('selso.auth', SelsoAuthenticate::class);
     }
 }

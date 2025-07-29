@@ -53,7 +53,7 @@ class AuthController extends Controller
         $userInfo['refresh_token'] = $data['refresh_token'];
 
         Auth::login(new User($userInfo));
-        session(['sso_user' => $userInfo]);
+        session(['selso' => $userInfo]);
 
         return redirect()->intended(route(config('selso.redirect_after_login'), absolute: false));
     }

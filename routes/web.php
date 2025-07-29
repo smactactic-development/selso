@@ -8,12 +8,12 @@ Route::group([
     'middleware' => ['web'],
 ], function () {
     Route::middleware('guest')->group(function () {
-        Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-        Route::get('/auth/callback', [AuthController::class, 'callback'])->name('auth.callback');
+        Route::get('/login', [AuthController::class, 'login'])->name('selso.login');
+        Route::get('/auth/callback', [AuthController::class, 'callback'])->name('selso.callback');
     });
 
-    Route::middleware('jwt.auth')->group(function () {
-        Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::middleware('selso.auth')->group(function () {
+        Route::get('/logout', [AuthController::class, 'destroy'])->name('selso.logout');
         Route::get('/settings/profile', [ProfileController::class, 'edit'])->name('profile');
     });
 });
