@@ -23,8 +23,8 @@ class AuthController extends Controller
         $request->session()->put('state', $state = Str::random(40));
 
         $query = http_build_query([
-            'client_id' => '1',
-            'redirect_uri' => 'http://deskreg.test/auth/callback',
+            'client_id' => config('selso.client_id'),
+            'redirect_uri' => config('selso.redirect_uri'),
             'response_type' => 'code',
             'scope' => '',
             'state' => $state,
