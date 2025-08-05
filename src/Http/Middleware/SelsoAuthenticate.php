@@ -24,7 +24,7 @@ class SelsoAuthenticate
         $token = Auth::user()?->access_token;
 
         // if (!$token) return abort(401);
-        if (!$token) return redirect()->to('selso.login');
+        if (!$token) return redirect()->route('selso.login');
 
         try {
             JWT::decode($token, new Key(config('selso.public_key'), 'RS256'));
@@ -44,7 +44,7 @@ class SelsoAuthenticate
             session()->flush();
 
             // if ($response->failed()) return abort(401);
-            if ($response->failed()) return redirect()->to('selso.login');
+            if ($response->failed()) return redirect()->route('selso.login');
 
             $data = $response->json();
             $userInfo = Http::withToken($data['access_token'])->get($baseUrl . '/api/user')->json();
